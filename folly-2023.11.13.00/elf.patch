@@ -1,0 +1,22 @@
+diff --git a/folly/experimental/symbolizer/Elf.cpp b/folly/experimental/symbolizer/Elf.cpp
+index 6a7f74f..2b1c0ce 100644
+--- a/folly/experimental/symbolizer/Elf.cpp
++++ b/folly/experimental/symbolizer/Elf.cpp
+@@ -39,14 +39,12 @@
+
+ #if defined(__ELF_NATIVE_CLASS)
+ #define FOLLY_ELF_NATIVE_CLASS __ELF_NATIVE_CLASS
+-#elif defined(__FreeBSD__)
+-#if defined(__LP64__)
++#elif defined(__ANDROID__)
++#define FOLLY_ELF_NATIVE_CLASS __WORDSIZE
++#elif defined(__LP64__)
+ #define FOLLY_ELF_NATIVE_CLASS 64
+ #else
+ #define FOLLY_ELF_NATIVE_CLASS 32
+-#endif
+-#elif defined(__ANDROID__)
+-#define FOLLY_ELF_NATIVE_CLASS __WORDSIZE
+ #endif // __ELF_NATIVE_CLASS
+
+ namespace folly {

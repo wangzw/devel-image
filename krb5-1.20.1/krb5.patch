@@ -1,0 +1,43 @@
+diff --git a/src/kadmin/dbutil/kdb5_util.c b/src/kadmin/dbutil/kdb5_util.c
+index 19a5925..905a7df 100644
+--- a/src/kadmin/dbutil/kdb5_util.c
++++ b/src/kadmin/dbutil/kdb5_util.c
+@@ -106,7 +106,7 @@ void usage()
+     exit(1);
+ }
+ 
+-krb5_keyblock master_keyblock;
++extern krb5_keyblock master_keyblock;
+ krb5_kvno   master_kvno; /* fetched */
+ extern krb5_principal master_princ;
+ char *mkey_fullname;
+diff --git a/src/tests/create/kdb5_mkdums.c b/src/tests/create/kdb5_mkdums.c
+index 7c06666..5816ef9 100644
+--- a/src/tests/create/kdb5_mkdums.c
++++ b/src/tests/create/kdb5_mkdums.c
+@@ -69,8 +69,8 @@ usage(who, status)
+ }
+ 
+ int master_princ_set = 0;
+-krb5_keyblock master_keyblock;
+-krb5_principal master_princ;
++extern krb5_keyblock master_keyblock;
++extern krb5_principal master_princ;
+ krb5_pointer master_random;
+ krb5_context test_context;
+ 
+diff --git a/src/tests/verify/kdb5_verify.c b/src/tests/verify/kdb5_verify.c
+index 3b152ba..fcd8ca5 100644
+--- a/src/tests/verify/kdb5_verify.c
++++ b/src/tests/verify/kdb5_verify.c
+@@ -62,8 +62,8 @@ usage(who, status)
+     exit(status);
+ }
+ 
+-krb5_keyblock master_keyblock;
+-krb5_principal master_princ;
++extern krb5_keyblock master_keyblock;
++extern krb5_principal master_princ;
+ krb5_encrypt_block master_encblock;
+ krb5_pointer master_random;
+ char *str_master_princ;

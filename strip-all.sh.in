@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -euxo pipefail
+
+/usr/bin/cp -f @CMAKE_STRIP@ @CMAKE_BINARY_DIR@/strip
+
+find @CMAKE_INSTALL_PREFIX@ -type f | xargs file | grep ELF | grep "executable" | awk -F':' '{print $1}' | xargs @CMAKE_BINARY_DIR@/strip --strip-debug
+find @CMAKE_INSTALL_PREFIX@ -type f | xargs file | grep ELF | grep "shared object" | awk -F':' '{print $1}' | xargs @CMAKE_BINARY_DIR@/strip --strip-debug
+find @CMAKE_INSTALL_PREFIX@ -type f | xargs file | grep "ar archive" | awk -F':' '{print $1}' | xargs @CMAKE_BINARY_DIR@/strip --strip-debug

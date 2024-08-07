@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+set -eu
+
+cppflags="-D_GLIBCXX_USE_CXX11_ABI=1 -I${CMAKE_INSTALL_PREFIX}/include ${CPPFLAGS}"
+ldflags="-L${CMAKE_INSTALL_PREFIX}/lib ${CMAKE_THREAD_LIBS_INIT} ${DEVELOP_STATIC_LINK_FLAGS} ${LDFLAGS}"
+libs=""
+
+if [ "${CMAKE_SYSROOT}" != "" ]; then
+  cppflags+=" --sysroot=${CMAKE_SYSROOT}"
+  ldflags+=" --sysroot=${CMAKE_SYSROOT}"
+fi
+
+export CC=${CMAKE_C_COMPILER}
+export CXX=${CMAKE_CXX_COMPILER}
+
+while [ "$#" -gt 0 ]; do
+  opt=$1
+
+  case $opt in
+  --cppflags)
+    shift
+    cppflags+=" $1"
+    shift
+    ;;
+  --ldflags)
+    shift
+    ldflags+=" $1"
+    shift
+    ;;
+  --libs)
+    shift
+    libs+=" $1"
+    shift
+    ;;
+  --)
+    shift
+    break
+    ;;
+  *)
+    break
+    ;;
+  esac
+done
+
+export CPPFLAGS=$cppflags
+export LDFLAGS=$ldflags
+export LIBS=$libs
+export AR=${CMAKE_AR}
+export RANLIB=${CMAKE_RANLIB}
+export LINK=${CMAKE_LINKER}
+
+exec "$@"
