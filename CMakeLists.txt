@@ -54,9 +54,9 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/devel-toolchain.cmake.in devel-
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/devel-toolchain.cmake DESTINATION ${CMAKE_INSTALL_PREFIX})
 
 if (APPLE)
-    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/brew-clang-17-toolchain.cmake brew-clang-17-toolchain.cmake COPYONLY)
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/brew-clang-18-toolchain.cmake brew-clang-18-toolchain.cmake COPYONLY)
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/homebrew-macos.cmake homebrew-macos.cmake COPYONLY)
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/brew-clang-17-toolchain.cmake DESTINATION ${CMAKE_INSTALL_PREFIX})
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/brew-clang-18-toolchain.cmake DESTINATION ${CMAKE_INSTALL_PREFIX})
     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/homebrew-macos.cmake DESTINATION ${CMAKE_INSTALL_PREFIX})
 endif ()
 
