@@ -151,10 +151,10 @@ ExternalProject_Add(yaml-cpp
 
 ExternalProject_Add(simdjson
         PREFIX simdjson
-        URL "https://github.com/simdjson/simdjson/archive/refs/tags/v3.6.0.tar.gz"
-        URL_HASH "MD5=67679d6c5d60fec5f382dbb95d202219"
+        URL "https://github.com/simdjson/simdjson/archive/refs/tags/v3.10.1.tar.gz"
+        URL_HASH "MD5=fcf0f0629f0e4bc7c170b65050d440ee"
         DOWNLOAD_DIR "${CMAKE_SOURCE_DIR}/download/simdjson/"
-        SOURCE_DIR "${CMAKE_BINARY_DIR}/simdjson/src/simdjson-3.6.0"
+        SOURCE_DIR "${CMAKE_BINARY_DIR}/simdjson/src/simdjson-3.10.1"
         CMAKE_ARGS
         -DCMAKE_TOOLCHAIN_FILE:PATH=${CMAKE_TOOLCHAIN_FILE}
         CMAKE_CACHE_ARGS
