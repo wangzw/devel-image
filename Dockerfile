@@ -3,6 +3,7 @@ FROM ghcr.io/wangzw/devel-toolchain:2.0.0-gcc-14-llvm-18 AS build
 COPY . /workspace/
 
 RUN mkdir -p /workspace/build                                                         \
+    && mkdir -p /opt/develop/root/usr                                                 \
     && cmake -S /workspace/ -B /workspace/build                                       \
          -DCMAKE_TOOLCHAIN_FILE=/workspace/cmake/build-toolchain.cmake                \
          -DCMAKE_INSTALL_PREFIX=/opt/develop/root/usr                                 \
