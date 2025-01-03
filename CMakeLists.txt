@@ -76,7 +76,7 @@ endif ()
 
 include(ExternalProject)
 
-ExternalProject_Add(bzip2
+ExternalProject_Add(bzip2-build
         PREFIX bzip2
         URL "https://gitlab.com/bzip2/bzip2/-/archive/66c46b8c9436613fd81bc5d03f63a61933a4dcc3/bzip2.zip"
         URL_HASH "MD5=1588157087fb03f5a7f2c90b334308ee"
@@ -103,6 +103,14 @@ ExternalProject_Add(bzip2
         -DENABLE_SHARED_LIB:BOOL=OFF
         -DENABLE_STATIC_LIB:BOOL=ON
 )
+
+add_custom_command(
+        OUTPUT ${CMAKE_INSTALL_PREFIX}/lib/libbz2.a
+        COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_INSTALL_PREFIX}/lib/libbz2_static.a ${CMAKE_INSTALL_PREFIX}/lib/libbz2.a
+        DEPENDS bzip2-build
+)
+
+add_custom_target(bzip2 DEPENDS ${CMAKE_INSTALL_PREFIX}/lib/libbz2.a)
 
 ExternalProject_Add(xz
         PREFIX xz
