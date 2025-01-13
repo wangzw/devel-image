@@ -1304,3 +1304,26 @@ ExternalProject_Add(doxygen
         -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON
         -DCMAKE_PREFIX_PATH:STRING=${CMAKE_PREFIX_PATH}
 )
+
+ExternalProject_Add(apr
+        PREFIX apr
+        URL "https://github.com/apache/apr/archive/refs/tags/1.7.5.tar.gz"
+        URL_HASH "MD5=843d390e0125ec089e88c1dca036cde3"
+        DOWNLOAD_DIR "${CMAKE_SOURCE_DIR}/download/apr/"
+        SOURCE_DIR "${CMAKE_BINARY_DIR}/apr/src/apr-1.7.5"
+        DOWNLOAD_EXTRACT_TIMESTAMP ON
+        BUILD_IN_SOURCE ON
+        CONFIGURE_COMMAND
+        ${CMAKE_BINARY_DIR}/apr/src/apr-1.7.5/buildconf &&
+        ${CMAKE_CURRENT_BINARY_DIR}/env-wrapper.sh --
+        ${CMAKE_BINARY_DIR}/apr/src/apr-1.7.5/configure
+        --enable-shared=no
+        --enable-static=yes
+        --with-pic=yes
+        --prefix=${CMAKE_INSTALL_PREFIX}
+        BUILD_COMMAND
+        ${CMAKE_CURRENT_BINARY_DIR}/env-wrapper.sh -- $(MAKE)
+        INSTALL_COMMAND
+        ${CMAKE_CURRENT_BINARY_DIR}/env-wrapper.sh -- $(MAKE) install
+        DEPENDS zlib
+)
