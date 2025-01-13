@@ -1327,3 +1327,21 @@ ExternalProject_Add(apr
         ${CMAKE_CURRENT_BINARY_DIR}/env-wrapper.sh -- $(MAKE) install
         DEPENDS zlib
 )
+
+ExternalProject_Add(xerces-c
+        PREFIX xerces-c
+        URL "https://github.com/apache/xerces-c/archive/refs/tags/v3.3.0.tar.gz"
+        URL_HASH "MD5=9662878f56e5bc1eb7a9b4c572d37a1d"
+        DOWNLOAD_DIR "${CMAKE_SOURCE_DIR}/download/xerces-c/"
+        SOURCE_DIR "${CMAKE_BINARY_DIR}/xerces-c/src/xerces-c-v3.3.0"
+        CMAKE_ARGS
+        -DCMAKE_TOOLCHAIN_FILE:PATH=${CMAKE_TOOLCHAIN_FILE}
+        CMAKE_CACHE_ARGS
+        -DCMAKE_BUILD_TYPE:STRING=Release
+        -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}
+        -DCMAKE_C_FLAGS:STRING=${DEVELOP_COMPILE_OPTIONS}
+        -DCMAKE_CXX_FLAGS:STRING=${DEVELOP_COMPILE_OPTIONS}
+        -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON
+        -DBUILD_SHARED_LIBS:BOOL=OFF
+        DEPENDS icu curl
+)
