@@ -354,7 +354,7 @@ ExternalProject_Add(icu
         BUILD_IN_SOURCE OFF
         DOWNLOAD_EXTRACT_TIMESTAMP ON
         CONFIGURE_COMMAND
-        bash -x ${CMAKE_CURRENT_BINARY_DIR}/env-wrapper.sh --
+        bash -x ${CMAKE_CURRENT_BINARY_DIR}/env-wrapper.sh --cppflags -fPIC --
         ${CMAKE_BINARY_DIR}/icu/src/icu-74.1/source/configure
         --prefix=${CMAKE_INSTALL_PREFIX}
         --enable-static
@@ -1026,7 +1026,7 @@ ExternalProject_Add(kerberos
         CONFIGURE_COMMAND
         ${CMAKE_CURRENT_BINARY_DIR}/env-wrapper.sh --
         autoreconf ${CMAKE_BINARY_DIR}/kerberos/src/krb5-1.20.1/src/ &&
-        ${CMAKE_CURRENT_BINARY_DIR}/env-wrapper.sh --
+        ${CMAKE_CURRENT_BINARY_DIR}/env-wrapper.sh --cppflags -fPIC --
         ${CMAKE_BINARY_DIR}/kerberos/src/krb5-1.20.1/src/configure
         --enable-static
         --disable-shared
