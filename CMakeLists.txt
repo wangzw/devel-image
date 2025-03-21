@@ -1345,3 +1345,26 @@ ExternalProject_Add(xerces-c
         -DBUILD_SHARED_LIBS:BOOL=OFF
         DEPENDS icu curl
 )
+
+ExternalProject_Add(stdexec
+        PREFIX stdexec
+        URL "https://github.com/NVIDIA/stdexec/archive/refs/tags/nvhpc-24.09.tar.gz"
+        URL_HASH "MD5=119a00bab43653b9d50296c3d7c1f9db"
+        DOWNLOAD_DIR "${CMAKE_SOURCE_DIR}/download/stdexec/"
+        SOURCE_DIR "${CMAKE_BINARY_DIR}/stdexec/src/nvhpc-24.09"
+        CMAKE_ARGS
+        -DCMAKE_TOOLCHAIN_FILE:PATH=${CMAKE_TOOLCHAIN_FILE}
+        CMAKE_CACHE_ARGS
+        -DCMAKE_BUILD_TYPE:STRING=Release
+        -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}
+        -DCMAKE_C_FLAGS:STRING=${DEVELOP_COMPILE_OPTIONS}
+        -DCMAKE_CXX_FLAGS:STRING=${DEVELOP_COMPILE_OPTIONS}
+        -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON
+        -DBUILD_SHARED_LIBS:BOOL=OFF
+        -DBUILD_TESTING:BOOL=OFF
+        -DSTDEXEC_BUILD_TESTS:BOOL=OFF
+        -DSTDEXEC_ENABLE_IO_URING_TESTS:BOOL=OFF
+        -DSTDEXEC_BUILD_DOCS:BOOL=OFF
+        -DSTDEXEC_BUILD_EXAMPLES:BOOL=OFF
+        DEPENDS liburing
+)
