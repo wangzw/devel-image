@@ -1,4 +1,4 @@
-FROM ghcr.io/wangzw/devel-toolchain:2.0.0-gcc-14-llvm-18 AS build
+FROM ghcr.io/wangzw/devel-toolchain:latest AS build
 
 COPY . /workspace/
 
@@ -11,7 +11,7 @@ RUN mkdir -p /workspace/build                                                   
     && cmake --install /workspace/build                                               \
     && cmake --build /workspace/build -t strip-all
 
-FROM ghcr.io/wangzw/devel-toolchain:2.0.0-gcc-14-llvm-18
+FROM ghcr.io/wangzw/devel-toolchain:latest
 LABEL authors="Zhanwei Wang"
 
 COPY --from=build /opt/develop /opt/develop
