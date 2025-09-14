@@ -78,10 +78,10 @@ include(ExternalProject)
 
 ExternalProject_Add(bzip2-build
         PREFIX bzip2
-        URL "https://gitlab.com/bzip2/bzip2/-/archive/66c46b8c9436613fd81bc5d03f63a61933a4dcc3/bzip2.zip"
-        URL_HASH "MD5=1588157087fb03f5a7f2c90b334308ee"
+        URL "https://sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz"
+        URL_HASH "MD5=67e051268d0c475ea773822f7500d0e5"
         DOWNLOAD_DIR "${CMAKE_SOURCE_DIR}/download/bzip2/"
-        SOURCE_DIR "${CMAKE_BINARY_DIR}/bzip2/src/bzip2-1.0.9"
+        SOURCE_DIR "${CMAKE_BINARY_DIR}/bzip2/src/bzip2-1.0.8"
         CMAKE_ARGS
         -DCMAKE_TOOLCHAIN_FILE:PATH=${CMAKE_TOOLCHAIN_FILE}
         CMAKE_CACHE_ARGS
