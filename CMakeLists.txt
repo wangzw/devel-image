@@ -1285,10 +1285,10 @@ ExternalProject_Add(cctz
 
 ExternalProject_Add(doxygen
         PREFIX doxygen
-        URL "https://github.com/doxygen/doxygen/archive/refs/tags/Release_1_10_0.tar.gz"
-        URL_HASH "MD5=82de97da58776ee561cceab097c34ac0"
+        URL "https://github.com/doxygen/doxygen/archive/refs/tags/Release_1_14_0.tar.gz"
+        URL_HASH "MD5=9c12e0438955cd7cb5d31c324b11aee6"
         DOWNLOAD_DIR "${CMAKE_SOURCE_DIR}/download/doxygen/"
-        SOURCE_DIR "${CMAKE_BINARY_DIR}/doxygen/src/doxygen-1.10.0"
+        SOURCE_DIR "${CMAKE_BINARY_DIR}/doxygen/src/doxygen-1.14.0"
         CMAKE_ARGS
         -DCMAKE_TOOLCHAIN_FILE:PATH=${CMAKE_TOOLCHAIN_FILE}
         CMAKE_CACHE_ARGS
