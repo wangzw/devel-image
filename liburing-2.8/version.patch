@@ -1,8 +1,8 @@
 diff --git a/configure b/configure
-index 4794306..fea0019 100755
+index 3c95214..78fad06 100755
 --- a/configure
 +++ b/configure
-@@ -566,9 +566,9 @@ print_config "CXX" "$cxx"
+@@ -585,9 +585,9 @@ print_config "CXX" "$cxx"
  # generate io_uring_version.h
  # Reset MAKEFLAGS
  MAKEFLAGS=

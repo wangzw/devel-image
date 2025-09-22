@@ -496,17 +496,17 @@ ExternalProject_Add(spdlog
 if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
     ExternalProject_Add(liburing
             PREFIX liburing
-            URL "https://github.com/axboe/liburing/archive/refs/tags/liburing-2.8.tar.gz"
-            URL_HASH "MD5=769d83fc56b7316579c361756cbf5ec1"
+            URL "https://github.com/axboe/liburing/archive/refs/tags/liburing-2.12.tar.gz"
+            URL_HASH "MD5=be7962d8f24edb87569654b748b60683"
             DOWNLOAD_DIR "${CMAKE_SOURCE_DIR}/download/liburing/"
-            SOURCE_DIR "${CMAKE_BINARY_DIR}/liburing/src/liburing-2.8"
+            SOURCE_DIR "${CMAKE_BINARY_DIR}/liburing/src/liburing-2.12"
             PATCH_COMMAND
-            patch -p1 < ${CMAKE_SOURCE_DIR}/liburing-2.8/version.patch
+            patch -p1 < ${CMAKE_SOURCE_DIR}/liburing-2.12/version.patch
             BUILD_IN_SOURCE ON
             DOWNLOAD_EXTRACT_TIMESTAMP ON
             CONFIGURE_COMMAND
             ${CMAKE_CURRENT_BINARY_DIR}/env-wrapper.sh --
-            ${CMAKE_BINARY_DIR}/liburing/src/liburing-2.8/configure
+            ${CMAKE_BINARY_DIR}/liburing/src/liburing-2.12/configure
             --prefix=${CMAKE_INSTALL_PREFIX}
             BUILD_COMMAND
             ${CMAKE_CURRENT_BINARY_DIR}/env-wrapper.sh -- $(MAKE) ENABLE_SHARED=0 V=1
