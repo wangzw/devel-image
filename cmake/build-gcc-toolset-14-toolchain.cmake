@@ -1,5 +1,5 @@
-if (EXISTS /opt/devel-gcc-14-toolchain.cmake)
-    include(/opt/devel-gcc-14-toolchain.cmake)
+if (EXISTS /opt/gcc-toolset-14-toolchain.cmake)
+    include(/opt/gcc-toolset-14-toolchain.cmake)
     set(CMAKE_EXE_LINKER_FLAGS_INIT "-static-libstdc++ -static-libgcc")
     set(CMAKE_SHARED_LINKER_FLAGS_INIT "-static-libstdc++ -static-libgcc")
 endif ()

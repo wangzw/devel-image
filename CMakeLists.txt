@@ -54,9 +54,9 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/devel-toolchain.cmake.in devel-
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/devel-toolchain.cmake DESTINATION ${CMAKE_INSTALL_PREFIX})
 
 if (APPLE)
-    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/brew-clang-19-toolchain.cmake brew-clang-19-toolchain.cmake COPYONLY)
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/brew-clang-toolchain.cmake brew-clang-toolchain.cmake COPYONLY)
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/homebrew-macos.cmake homebrew-macos.cmake COPYONLY)
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/brew-clang-19-toolchain.cmake DESTINATION ${CMAKE_INSTALL_PREFIX})
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/brew-clang-toolchain.cmake DESTINATION ${CMAKE_INSTALL_PREFIX})
     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/homebrew-macos.cmake DESTINATION ${CMAKE_INSTALL_PREFIX})
 endif ()
 
@@ -1168,65 +1168,6 @@ ExternalProject_Add(utf8proc
         -DUTF8PROC_ENABLE_TESTING:BOOL=OFF
 )
 
-ExternalProject_Add(thrift
-        PREFIX thrift
-        URL "https://github.com/apache/thrift/archive/refs/tags/v0.19.0.tar.gz"
-        URL_HASH "MD5=d786b7a707a7dbea52fc387000400caa"
-        DOWNLOAD_DIR "${CMAKE_SOURCE_DIR}/download/thrift/"
-        SOURCE_DIR "${CMAKE_BINARY_DIR}/thrift/src/thrift-0.19.0"
-        CMAKE_ARGS
-        -DCMAKE_TOOLCHAIN_FILE:PATH=${CMAKE_TOOLCHAIN_FILE}
-        CMAKE_CACHE_ARGS
-        -DCMAKE_PROGRAM_PATH:PATH=/usr/local/opt/bison/bin/
-        -DCMAKE_BUILD_TYPE:STRING=Release
-        -DCMAKE_CXX_FLAGS:STRING=${DEVELOP_COMPILE_OPTIONS}
-        -DCMAKE_CXX_STANDARD:STRING=20
-        -DCMAKE_C_FLAGS:STRING=${DEVELOP_COMPILE_OPTIONS}
-        -DCMAKE_EXE_LINKER_FLAGS:STRING=${DEVELOP_EXEC_STATIC_LINK_FLAGS}
-        -DCMAKE_INSTALL_LIBDIR:PATH=lib
-        -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}
-        -DCMAKE_PREFIX_PATH:STRING=${CMAKE_PREFIX_PATH}
-        -DCMAKE_FIND_ROOT_PATH:STRING=${CMAKE_FIND_ROOT_PATH}
-        -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON
-        -DBUILD_TESTING:BOOL=OFF
-        -DBUILD_CPP:BOOL=ON
-        -DBUILD_C_GLIB:BOOL=OFF
-        -DBUILD_JAVA:BOOL=OFF
-        -DBUILD_JAVASCRIPT:BOOL=OFF
-        -DBUILD_KOTLIN:BOOL=OFF
-        -DBUILD_NODEJS:BOOL=OFF
-        -DBUILD_PYTHON:BOOL=OFF
-        -DBUILD_EXAMPLES:BOOL=OFF
-        -DBUILD_TUTORIALS:BOOL=OFF
-        -DWITH_STATIC_LIB:BOOL=ON
-        -DOPENSSL_ROOT_DIR:PATH=${CMAKE_INSTALL_PREFIX}
-        -DOPENSSL_USE_STATIC_LIBS:BOOL=TRUE
-        DEPENDS boost zlib openssl
-)
-
-ExternalProject_Add(postgres
-        PREFIX postgres
-        URL "https://github.com/postgres/postgres/archive/refs/tags/REL_16_1.tar.gz"
-        URL_HASH "MD5=d1b65dd4fbdf92ad12097780f82a5d6f"
-        DOWNLOAD_DIR "${CMAKE_SOURCE_DIR}/download/postgres/"
-        SOURCE_DIR "${CMAKE_BINARY_DIR}/postgres/src/postgresql-16.1"
-        BUILD_IN_SOURCE ON
-        DOWNLOAD_EXTRACT_TIMESTAMP ON
-        CONFIGURE_COMMAND
-        ${CMAKE_CURRENT_BINARY_DIR}/env-wrapper.sh --
-        ${CMAKE_BINARY_DIR}/postgres/src/postgresql-16.1/configure
-        --with-includes=${CMAKE_INSTALL_PREFIX}/include
-        --with-libraries=${CMAKE_INSTALL_PREFIX}/lib
-        --prefix=${CMAKE_INSTALL_PREFIX}/postgres
-        --without-readline
-        --without-icu
-        BUILD_COMMAND
-        ${CMAKE_CURRENT_BINARY_DIR}/env-wrapper.sh -- $(MAKE) MAKELEVEL=0 MAKEFLAGS= MFLAGS=
-        INSTALL_COMMAND
-        ${CMAKE_CURRENT_BINARY_DIR}/env-wrapper.sh -- $(MAKE) install
-        DEPENDS openssl snappy zlib zstd
-)
-
 ExternalProject_Add(folly
         PREFIX folly
         URL "https://github.com/facebook/folly/releases/download/v2023.11.13.00/folly-v2023.11.13.00.tar.gz"
@@ -1326,24 +1267,6 @@ ExternalProject_Add(apr
         INSTALL_COMMAND
         ${CMAKE_CURRENT_BINARY_DIR}/env-wrapper.sh -- $(MAKE) install
         DEPENDS zlib
-)
-
-ExternalProject_Add(xerces-c
-        PREFIX xerces-c
-        URL "https://github.com/apache/xerces-c/archive/refs/tags/v3.3.0.tar.gz"
-        URL_HASH "MD5=9662878f56e5bc1eb7a9b4c572d37a1d"
-        DOWNLOAD_DIR "${CMAKE_SOURCE_DIR}/download/xerces-c/"
-        SOURCE_DIR "${CMAKE_BINARY_DIR}/xerces-c/src/xerces-c-v3.3.0"
-        CMAKE_ARGS
-        -DCMAKE_TOOLCHAIN_FILE:PATH=${CMAKE_TOOLCHAIN_FILE}
-        CMAKE_CACHE_ARGS
-        -DCMAKE_BUILD_TYPE:STRING=Release
-        -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}
-        -DCMAKE_C_FLAGS:STRING=${DEVELOP_COMPILE_OPTIONS}
-        -DCMAKE_CXX_FLAGS:STRING=${DEVELOP_COMPILE_OPTIONS}
-        -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON
-        -DBUILD_SHARED_LIBS:BOOL=OFF
-        DEPENDS icu curl
 )
 
 ExternalProject_Add(stdexec
