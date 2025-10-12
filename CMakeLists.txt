@@ -910,12 +910,10 @@ ExternalProject_Add(grpc
 
 ExternalProject_Add(opentelemetry-cpp
         PREFIX opentelemetry-cpp
-        URL "https://github.com/open-telemetry/opentelemetry-cpp/archive/refs/tags/v1.12.0.tar.gz"
-        URL_HASH "MD5=5be6f2437ba53750a6d2bf39f03bc98d"
+        URL "https://github.com/open-telemetry/opentelemetry-cpp/archive/refs/tags/v1.23.0.tar.gz"
+        URL_HASH "MD5=777aa90dff236d097a96e71da2496c21"
         DOWNLOAD_DIR "${CMAKE_SOURCE_DIR}/download/opentelemetry-cpp/"
-        SOURCE_DIR "${CMAKE_BINARY_DIR}/opentelemetry-cpp/src/opentelemetry-cpp-1.12.0"
-        PATCH_COMMAND
-        patch -p1 < ${CMAKE_SOURCE_DIR}/opentelemetry-cpp-1.12.0/opentelemetry-cpp.patch
+        SOURCE_DIR "${CMAKE_BINARY_DIR}/opentelemetry-cpp/src/opentelemetry-cpp-1.23.0"
         CMAKE_ARGS
         -DCMAKE_TOOLCHAIN_FILE:PATH=${CMAKE_TOOLCHAIN_FILE}
         CMAKE_CACHE_ARGS
