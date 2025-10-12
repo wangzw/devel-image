@@ -594,7 +594,7 @@ ExternalProject_Add(glog
 
 ExternalProject_Add(c-ares
         PREFIX c-ares
-        URL "${CMAKE_SOURCE_DIR}/grpc-1.59.2/third_party/cares/cares"
+        URL "${CMAKE_SOURCE_DIR}/grpc-1.75.1/third_party/cares/cares"
         SOURCE_DIR "${CMAKE_BINARY_DIR}/c-ares/src/cares"
         CMAKE_ARGS
         -DCMAKE_TOOLCHAIN_FILE:PATH=${CMAKE_TOOLCHAIN_FILE}
@@ -748,7 +748,7 @@ ExternalProject_Add(
 
 ExternalProject_Add(absl
         PREFIX absl
-        URL "${CMAKE_SOURCE_DIR}/grpc-1.59.2/third_party/abseil-cpp"
+        URL "${CMAKE_SOURCE_DIR}/grpc-1.75.1/third_party/abseil-cpp"
         SOURCE_DIR "${CMAKE_BINARY_DIR}/absl/src/abseil-cpp"
         CMAKE_ARGS
         -DCMAKE_TOOLCHAIN_FILE:PATH=${CMAKE_TOOLCHAIN_FILE}
@@ -771,7 +771,7 @@ ExternalProject_Add(absl
 
 ExternalProject_Add(benchmark
         PREFIX benchmark
-        URL "${CMAKE_SOURCE_DIR}/grpc-1.59.2/third_party/benchmark"
+        URL "${CMAKE_SOURCE_DIR}/grpc-1.75.1/third_party/benchmark"
         SOURCE_DIR "${CMAKE_BINARY_DIR}/benchmark/src/benchmark"
         CMAKE_ARGS
         -DCMAKE_TOOLCHAIN_FILE:PATH=${CMAKE_TOOLCHAIN_FILE}
@@ -795,7 +795,7 @@ ExternalProject_Add(benchmark
 
 ExternalProject_Add(protobuf
         PREFIX protobuf
-        URL "${CMAKE_SOURCE_DIR}/grpc-1.59.2/third_party/protobuf"
+        URL "${CMAKE_SOURCE_DIR}/grpc-1.75.1/third_party/protobuf"
         SOURCE_DIR "${CMAKE_BINARY_DIR}/protobuf/src/protobuf"
         CMAKE_ARGS
         -DCMAKE_TOOLCHAIN_FILE:PATH=${CMAKE_TOOLCHAIN_FILE}
@@ -821,7 +821,7 @@ ExternalProject_Add(protobuf
 
 ExternalProject_Add(re2
         PREFIX re2
-        URL "${CMAKE_SOURCE_DIR}/grpc-1.59.2/third_party/re2"
+        URL "${CMAKE_SOURCE_DIR}/grpc-1.75.1/third_party/re2"
         SOURCE_DIR "${CMAKE_BINARY_DIR}/re2/src/re2"
         CMAKE_ARGS
         -DCMAKE_TOOLCHAIN_FILE:PATH=${CMAKE_TOOLCHAIN_FILE}
@@ -864,8 +864,8 @@ ExternalProject_Add(lz4
 
 ExternalProject_Add(grpc
         PREFIX grpc
-        URL "${CMAKE_SOURCE_DIR}/grpc-1.59.2"
-        SOURCE_DIR "${CMAKE_BINARY_DIR}/grpc/src/grpc-1.59.2"
+        URL "${CMAKE_SOURCE_DIR}/grpc-1.75.1"
+        SOURCE_DIR "${CMAKE_BINARY_DIR}/grpc/src/grpc-1.75.1"
         CMAKE_ARGS
         -DCMAKE_TOOLCHAIN_FILE:PATH=${CMAKE_TOOLCHAIN_FILE}
         -DCMAKE_CROSSCOMPILING:BOOL=OFF
