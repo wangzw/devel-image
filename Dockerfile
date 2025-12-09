@@ -15,7 +15,7 @@ RUN --mount=type=bind,rw,source=.,target=/workspace <<EOF
   cmake --build /workspace/build -t strip-all
 EOF
 
-FROM ghcr.io/wangzw/devel-toolchain:latest
+FROM ghcr.io/wangzw/devel-toolchain:gcc-14-llvm-19
 LABEL authors="Zhanwei Wang"
 
 COPY --from=build /opt/develop /opt/develop
