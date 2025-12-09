@@ -1044,18 +1044,18 @@ ExternalProject_Add(cpu_features
 
 ExternalProject_Add(kerberos
         PREFIX kerberos
-        URL "https://github.com/krb5/krb5/archive/refs/tags/krb5-1.20.1-final.tar.gz"
-        URL_HASH "MD5=7cfcfc0a5df0fa0fc744b68441569129"
+        URL "https://github.com/krb5/krb5/archive/refs/tags/krb5-1.22.1-final.tar.gz"
+        URL_HASH "MD5=2cbf63b7609dfedb2a04b117ddc57f64"
         DOWNLOAD_DIR "${CMAKE_SOURCE_DIR}/download/kerberos/"
-        SOURCE_DIR "${CMAKE_BINARY_DIR}/kerberos/src/krb5-1.20.1"
-        PATCH_COMMAND patch -p1 < ${CMAKE_SOURCE_DIR}/krb5-1.20.1/krb5.patch
+        SOURCE_DIR "${CMAKE_BINARY_DIR}/kerberos/src/krb5-1.22.1"
+        PATCH_COMMAND patch -p1 < ${CMAKE_SOURCE_DIR}/krb5-1.22.1/krb5.patch
         BUILD_IN_SOURCE OFF
         DOWNLOAD_EXTRACT_TIMESTAMP ON
         CONFIGURE_COMMAND
         ${CMAKE_CURRENT_BINARY_DIR}/env-wrapper.sh --
-        autoreconf ${CMAKE_BINARY_DIR}/kerberos/src/krb5-1.20.1/src/ &&
+        autoreconf ${CMAKE_BINARY_DIR}/kerberos/src/krb5-1.22.1/src/ &&
         ${CMAKE_CURRENT_BINARY_DIR}/env-wrapper.sh --cppflags -fPIC --
-        ${CMAKE_BINARY_DIR}/kerberos/src/krb5-1.20.1/src/configure
+        ${CMAKE_BINARY_DIR}/kerberos/src/krb5-1.22.1/src/configure
         --enable-static
         --disable-shared
         --enable-dns-for-realm
