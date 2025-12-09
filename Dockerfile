@@ -1,4 +1,4 @@
-FROM ghcr.io/wangzw/devel-toolchain:latest AS build
+FROM ghcr.io/wangzw/devel-toolchain:gcc-14-llvm-19 AS build
 
 COPY . /workspace/
 
