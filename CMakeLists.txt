@@ -1200,13 +1200,38 @@ ExternalProject_Add(utf8proc
         -DUTF8PROC_ENABLE_TESTING:BOOL=OFF
 )
 
+ExternalProject_Add(fastfloat
+        PREFIX fastfloat
+        URL "https://github.com/fastfloat/fast_float/archive/refs/tags/v8.1.0.tar.gz"
+        URL_HASH "MD5=0df58800f5ca3abf43ef5d7af4889d3d"
+        DOWNLOAD_DIR "${CMAKE_SOURCE_DIR}/download/fastfloat/"
+        SOURCE_DIR "${CMAKE_BINARY_DIR}/fastfloat/src/fastfloat"
+        CMAKE_ARGS
+        -DCMAKE_TOOLCHAIN_FILE:PATH=${CMAKE_TOOLCHAIN_FILE}
+        CMAKE_CACHE_ARGS
+        -DCMAKE_BUILD_TYPE:STRING=Release
+        -DCMAKE_CXX_FLAGS:STRING=${DEVELOP_COMPILE_OPTIONS}
+        -DCMAKE_CXX_STANDARD:STRING=20
+        -DCMAKE_C_FLAGS:STRING=${DEVELOP_COMPILE_OPTIONS}
+        -DCMAKE_EXE_LINKER_FLAGS:STRING=${DEVELOP_EXEC_STATIC_LINK_FLAGS}
+        -DCMAKE_INSTALL_LIBDIR:PATH=lib
+        -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}
+        -DCMAKE_PREFIX_PATH:STRING=${CMAKE_PREFIX_PATH}
+        -DCMAKE_FIND_ROOT_PATH:STRING=${CMAKE_FIND_ROOT_PATH}
+        -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON
+        -DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+        -DFASTFLOAT_CXX_STANDARD:STRING=20
+        -DFASTFLOAT_TEST:BOOL=OFF
+        -DFASTFLOAT_BENCHMARKS:BOOL=OFF
+        -DFASTFLOAT_INSTALL:BOOL=ON
+)
+
 ExternalProject_Add(folly
         PREFIX folly
-        URL "https://github.com/facebook/folly/releases/download/v2023.11.13.00/folly-v2023.11.13.00.tar.gz"
-        URL_HASH "MD5=c327f24537fb6e39055dff7c0032615b"
+        URL "https://github.com/facebook/folly/releases/download/v2025.11.24.00/folly-v2025.11.24.00.tar.gz"
+        URL_HASH "MD5=5cf68e2cdbaa57d919a097c6d83a09de"
         DOWNLOAD_DIR "${CMAKE_SOURCE_DIR}/download/folly/"
-        SOURCE_DIR "${CMAKE_BINARY_DIR}/folly/src/folly-2023.11.13.00"
-        PATCH_COMMAND patch -p1 < ${CMAKE_SOURCE_DIR}/folly-2023.11.13.00/elf.patch
+        SOURCE_DIR "${CMAKE_BINARY_DIR}/folly/src/folly-2025.11.24.00"
         CMAKE_ARGS
         -DCMAKE_TOOLCHAIN_FILE:PATH=${CMAKE_TOOLCHAIN_FILE}
         CMAKE_CACHE_ARGS
@@ -1231,7 +1256,7 @@ ExternalProject_Add(folly
         -DFOLLY_HAVE_WCHAR_SUPPORT_EXITCODE:STRING=0
         -DFOLLY_HAVE_UNALIGNED_ACCESS_EXITCODE:STRING=0
         -DHAVE_VSNPRINTF_ERRORS_EXITCODE:STRING=0
-        DEPENDS boost gflags glog double-conversion libevent fmt snappy lz4 xz icu zlib liburing
+        DEPENDS boost gflags glog double-conversion libevent fmt snappy lz4 xz icu zlib liburing fastfloat zstd bzip2 openssl
 )
 
 ExternalProject_Add(cctz
