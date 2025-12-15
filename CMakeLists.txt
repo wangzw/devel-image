@@ -1079,6 +1079,7 @@ ExternalProject_Add(cyrus-sasl
         URL_HASH "MD5=6f228a692516f5318a64505b46966cfa"
         DOWNLOAD_DIR "${CMAKE_SOURCE_DIR}/download/cyrus-sasl/"
         SOURCE_DIR "${CMAKE_BINARY_DIR}/cyrus-sasl/src/cyrus-sasl-2.1.28"
+        PATCH_COMMAND patch -p1 < ${CMAKE_SOURCE_DIR}/cyrus-sasl-2.1.28/873.diff
         BUILD_IN_SOURCE OFF
         DOWNLOAD_EXTRACT_TIMESTAMP ON
         CONFIGURE_COMMAND
