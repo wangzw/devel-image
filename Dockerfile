@@ -13,6 +13,7 @@ RUN ln -s /opt/develop/root/usr/devel-toolchain.cmake /opt/devel-toolchain.cmake
 RUN <<'EOF'
 dnf -y install epel-release && dnf -y update
 dnf -y install --allowerasing curl
+dnf -y module enable nodejs:22
 
 dnf -y install          \
     bat                 \
@@ -41,6 +42,7 @@ dnf -y install          \
     nmap-ncat           \
     nmon                \
     nodejs              \
+    npm                 \
     openssl             \
     p7zip               \
     perf                \
@@ -64,3 +66,5 @@ rm -rf /var/cache/dnf
 EOF
 
 RUN npm install -g opencode-ai
+
+RUN curl -fsSL https://claude.ai/install.sh | bash
